@@ -96,7 +96,13 @@ app.get('/api/users/:_id/logs', (req, res) =>{
         username: data.username,
         count: data.log.length,
         _id: data._id,
-        log: log
+        log: log.map(item =>{
+          return {
+            description: item.description,
+            duration: item.duration,
+            date: item.date.toDateString()
+          }
+        })
       })
     }
   })
